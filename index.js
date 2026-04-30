@@ -13,12 +13,16 @@ const services = new Services();
 
 services.getAdat("https://pokeapi.co/api/v2/pokemon/12/", kepMegjelenit);
 
+let id = 0;
+
 function kepMegjelenit(data){
     obj = data;
-    new Pokemon(data,0,kepElem)
+    new Pokemon(data,id,kepElem)
+    id++;
 }
 
 window.addEventListener("kattint",function(){
+    console.log(obj);
     new Info(obj, infoElem);
  
 })
