@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>Info.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -35,65 +35,59 @@
 
 <div id="main">
     
+    <h1 class="page-title">Info.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @class Info
+ * @classdesc Egy kiválasztott Pokémon részletes adatainak megjelenítéséért felelős osztály.
+ */
+export default class Info {
 
+    /**
+     * @private
+     * @type {Object} A kiválasztott Pokémon adatai.
+     */
+    #obj = {};
 
-    <section class="package">
-        <h3> </h3>		
+    /**
+     * Létrehoz egy új Info példányt.
+     * @param {Object} obj - A Pokémon adatai.
+     * @param {HTMLElement} szuloElem - A szülő DOM elem, ahol az információ megjelenik.
+     */
+    constructor(obj, szuloElem) {
+        this.#obj = obj;
+        this.szuloElem = szuloElem;
+        this.szuloElem.innerHTML = "";
+        this.megjelenit();
+    }
+
+    /**
+     * A Pokémon részletes adatainak megjelenítése a DOM-ban.
+     */
+    megjelenit() {
+        let kod = `
+        &lt;div class="info-kartya">
+            &lt;h3>Név: ${this.#obj.name}&lt;/h3>
+            &lt;p>ID: ${this.#obj.id}&lt;/p>
+            &lt;p>Order: ${this.#obj.order}&lt;/p>
+            &lt;p>Height: ${this.#obj.height}&lt;/p>
+            &lt;p>Weight: ${this.#obj.weight}&lt;/p>
+        &lt;/div>
+        `;
+        this.szuloElem.insertAdjacentHTML("beforeend", kod);
+    }
+}
+</code></pre>
+        </article>
     </section>
-
-
-
-
-
-
-
-
-
-    
-
-
-
-    <section class="readme usertext">
-        <article><h1>Pokemon - dokumentáció készítésének automatizálása</h1>
-<h2>Leírás:</h2>
-<p>Ez a projekt egy Pokémon témájú webalkalmazás, amely célja, hogy különböző Pokémon karaktereket jelenítsen meg és azok adatait kezelje. A felhasználók böngészhetik a Pokémonokat, megtekinthetik a tulajdonságaikat, illetve interakcióba léphetnek velük az alkalmazás funkcióinak segítségével.
-A projekt oktatási céllal készült, és bemutatja a frontend fejlesztés alapjait, valamint API használatát.</p>
-<h2>Használt technológiák:</h2>
-<ul>
-<li>HTML5</li>
-<li>CSS3</li>
-<li>JavaScript (ES6)</li>
-<li>Fetch API / async-await</li>
-</ul>
-<h2>Funkciók:</h2>
-<ul>
-<li>Pokémonok listázása</li>
-<li>Pokémon adatok megjelenítése (név, típus, kép stb.)</li>
-<li>Keresés vagy szűrés (ha van ilyen funkció)</li>
-<li>API-ból történő adatlekérés</li>
-<li>Reszponzív design</li>
-</ul>
-<h2>Dokumentáció</h2>
-<p>A projekt JSDoc segítségével dokumentálva lett.</p>
-<p>A dokumentáció generálásához használd:</p>
-<p>bash
-npm run doc</p>
-<h2>Fejlesztési lehetőségek:</h2>
-<ul>
-<li>Több szűrési opció hozzáadása</li>
-<li>Pokémon részletes nézet bővítése</li>
-<li>LocalStorage használata kedvencekhez</li>
-<li>Animációk és UX javítás</li>
-</ul></article>
-    </section>
-
-
 
 
 

@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>Services.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -35,65 +35,46 @@
 
 <div id="main">
     
+    <h1 class="page-title">Services.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @class Services
+ * @classdesc API hívások kezelésére szolgáló osztály.
+ */
+export default class Services {
+    
+    /**
+     * Létrehoz egy új Services példányt.
+     */
+    constructor() {
+    }
 
-
-    <section class="package">
-        <h3> </h3>		
+    /**
+     * Adat lekérése egy megadott végpontról.
+     * @param {string} vegpont - Az API végpont URL-je.
+     * @param {function} callback - A visszahívó függvény, amely megkapja a lekért adatot.
+     */
+    getAdat(vegpont, callback) {
+        fetch(vegpont)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                callback(data);
+            })
+            .catch(error => console.log(error));
+    }
+}
+</code></pre>
+        </article>
     </section>
-
-
-
-
-
-
-
-
-
-    
-
-
-
-    <section class="readme usertext">
-        <article><h1>Pokemon - dokumentáció készítésének automatizálása</h1>
-<h2>Leírás:</h2>
-<p>Ez a projekt egy Pokémon témájú webalkalmazás, amely célja, hogy különböző Pokémon karaktereket jelenítsen meg és azok adatait kezelje. A felhasználók böngészhetik a Pokémonokat, megtekinthetik a tulajdonságaikat, illetve interakcióba léphetnek velük az alkalmazás funkcióinak segítségével.
-A projekt oktatási céllal készült, és bemutatja a frontend fejlesztés alapjait, valamint API használatát.</p>
-<h2>Használt technológiák:</h2>
-<ul>
-<li>HTML5</li>
-<li>CSS3</li>
-<li>JavaScript (ES6)</li>
-<li>Fetch API / async-await</li>
-</ul>
-<h2>Funkciók:</h2>
-<ul>
-<li>Pokémonok listázása</li>
-<li>Pokémon adatok megjelenítése (név, típus, kép stb.)</li>
-<li>Keresés vagy szűrés (ha van ilyen funkció)</li>
-<li>API-ból történő adatlekérés</li>
-<li>Reszponzív design</li>
-</ul>
-<h2>Dokumentáció</h2>
-<p>A projekt JSDoc segítségével dokumentálva lett.</p>
-<p>A dokumentáció generálásához használd:</p>
-<p>bash
-npm run doc</p>
-<h2>Fejlesztési lehetőségek:</h2>
-<ul>
-<li>Több szűrési opció hozzáadása</li>
-<li>Pokémon részletes nézet bővítése</li>
-<li>LocalStorage használata kedvencekhez</li>
-<li>Animációk és UX javítás</li>
-</ul></article>
-    </section>
-
-
 
 
 
