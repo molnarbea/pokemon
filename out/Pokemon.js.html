@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>Pokemon.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -35,44 +35,89 @@
 
 <div id="main">
     
+    <h1 class="page-title">Pokemon.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @class Pokemon
+ * @classdesc Egy Pokémon megjelenítéséért és eseménykezeléséért felelős osztály.
+ */
+export default class Pokemon {
 
+    /**
+     * @private
+     * @type {Object} A Pokémon adatai.
+     */
+    #obj = {};
 
-    <section class="package">
-        <h3> </h3>		
+    /**
+     * @private
+     * @type {number} Az elem indexe.
+     */
+    #index = 0;
+
+    /**
+     * Létrehoz egy új Pokemon példányt.
+     * @param {Object} obj - A Pokémon adatai.
+     * @param {number} index - A Pokémon indexe a listában.
+     * @param {HTMLElement} szuloElem - A szülő DOM elem.
+     */
+    constructor(obj = {}, index, szuloElem) {
+        this.#obj = obj;
+        this.#index = index;
+        this.szuloElem = szuloElem;
+        this.megjelenit();
+        this.esemeny();
+    }
+
+    /**
+     * Saját eseményt hoz létre és küld.
+     */
+    sajatEsemeny() {
+        const e = new CustomEvent("kattint", { detail: this.#index });
+        window.dispatchEvent(e);
+    }
+
+    /**
+     * Eseménykezelő hozzárendelése a képhez.
+     */
+    esemeny() {
+        const kepElem = document.querySelector(".kartya:last-child img");
+        kepElem.addEventListener("click", () => {
+            console.log("index ", this.#index);
+            this.sajatEsemeny();
+        });
+    }
+
+    /**
+     * A Pokémon megjelenítése a DOM-ban.
+     */
+    megjelenit() {
+        let kod = `
+        &lt;div class="kartya">
+            &lt;img src="${this.#obj.sprites.front_default}" alt="pokemon">
+        &lt;/div>
+        `;
+        this.szuloElem.insertAdjacentHTML("beforeend", kod);
+    }
+
+    /**
+     * Visszaadja a Pokémon objektumot.
+     * @returns {Object}
+     */
+    getObj() {
+        return this.#obj;
+    }
+}</code></pre>
+        </article>
     </section>
-
-
-
-
-
-
-
-
-
-    
-
-
-
-    <section class="readme usertext">
-        <article><p>Pokemon - dokumentáció készítésének automatizálása</p>
-<p>Ez a projekt egy Pokémon témájú webalkalmazás, amely célja, hogy különböző Pokémon karaktereket jelenítsen meg és azok adatait kezelje. A felhasználók böngészhetik a Pokémonokat, megtekinthetik a tulajdonságaikat, illetve interakcióba léphetnek velük az alkalmazás funkcióinak segítségével.
-A projekt oktatási céllal készült, és bemutatja a frontend fejlesztés alapjait, valamint API használatát.</p>
-<p>Használt technológiák</p>
-<ul>
-<li>HTML5</li>
-<li>CSS3</li>
-<li>JavaScript (ES6)</li>
-<li>Fetch API / async-await</li>
-</ul></article>
-    </section>
-
-
 
 
 

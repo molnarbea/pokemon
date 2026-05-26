@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>Pokemonok.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -35,44 +35,53 @@
 
 <div id="main">
     
+    <h1 class="page-title">Pokemonok.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Pokemon from "./Pokemon.js";
 
+/**
+ * @class Pokemonok
+ * @classdesc Több Pokémon megjelenítéséért felelős osztály.
+ */
+export default class Pokemonok {
 
-    <section class="package">
-        <h3> </h3>		
+  /**
+   * @private
+   * @type {Array&lt;Object>} A Pokémonok listája.
+   */
+  #lista = [];
+
+  /**
+   * Létrehoz egy új Pokemonok példányt.
+   * @param {Array&lt;Object>} lista - A Pokémonokat tartalmazó tömb.
+   * @param {HTMLElement} szuloElem - A szülő DOM elem, ahova a Pokémonok kerülnek.
+   */
+  constructor(lista, szuloElem) {
+    this.#lista = lista;
+    this.szuloElem = szuloElem;
+    this.szuloElem.innerHTML = "";
+    this.megjelenit();
+  }
+
+  /**
+   * Végigiterál a listán és létrehozza az egyes Pokémon elemeket.
+   */
+  megjelenit() {
+    this.#lista.forEach((elem, index) => {
+      new Pokemon(elem, index, this.szuloElem);
+    });
+  }
+}</code></pre>
+        </article>
     </section>
-
-
-
-
-
-
-
-
-
-    
-
-
-
-    <section class="readme usertext">
-        <article><p>Pokemon - dokumentáció készítésének automatizálása</p>
-<p>Ez a projekt egy Pokémon témájú webalkalmazás, amely célja, hogy különböző Pokémon karaktereket jelenítsen meg és azok adatait kezelje. A felhasználók böngészhetik a Pokémonokat, megtekinthetik a tulajdonságaikat, illetve interakcióba léphetnek velük az alkalmazás funkcióinak segítségével.
-A projekt oktatási céllal készült, és bemutatja a frontend fejlesztés alapjait, valamint API használatát.</p>
-<p>Használt technológiák</p>
-<ul>
-<li>HTML5</li>
-<li>CSS3</li>
-<li>JavaScript (ES6)</li>
-<li>Fetch API / async-await</li>
-</ul></article>
-    </section>
-
-
 
 
 

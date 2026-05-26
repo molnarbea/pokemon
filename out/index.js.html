@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>index.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -35,44 +35,74 @@
 
 <div id="main">
     
+    <h1 class="page-title">index.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Info from "./Info.js";
+import Pokemon from "./Pokemon.js";
+import Services from "./Services.js";
 
+/**
+ * A Pokémon kép megjelenítésére szolgáló DOM elem.
+ * @type {HTMLElement}
+ */
+const kepElem = document.querySelector(".kep");
 
-    <section class="package">
-        <h3> </h3>		
+/**
+ * A Pokémon részleteinek megjelenítésére szolgáló DOM elem.
+ * @type {HTMLElement}
+ */
+const infoElem = document.querySelector(".info");
+
+/**
+ * Az aktuális Pokémon objektum.
+ * @type {Object}
+ */
+let obj = {};
+
+/**
+ * Services példány az API hívásokhoz.
+ */
+const services = new Services();
+
+/**
+ * Az aktuális Pokémon indexe.
+ * @type {number}
+ */
+let id = 0;
+
+/**
+ * API hívás indítása.
+ */
+services.getAdat("https://pokeapi.co/api/v2/pokemon/12/", kepMegjelenit);
+
+/**
+ * A kép megjelenítéséért felelős callback függvény.
+ * @param {Object} data - Az API-ból kapott Pokémon adat.
+ */
+function kepMegjelenit(data) {
+    obj = data;
+    new Pokemon(data, id, kepElem);
+    id++;
+}
+
+/**
+ * Saját esemény figyelése (kattintás Pokémonra).
+ * Megjeleníti a kiválasztott Pokémon adatait.
+ */
+window.addEventListener("kattint", function () {
+    console.log(obj);
+    new Info(obj, infoElem);
+});</code></pre>
+        </article>
     </section>
-
-
-
-
-
-
-
-
-
-    
-
-
-
-    <section class="readme usertext">
-        <article><p>Pokemon - dokumentáció készítésének automatizálása</p>
-<p>Ez a projekt egy Pokémon témájú webalkalmazás, amely célja, hogy különböző Pokémon karaktereket jelenítsen meg és azok adatait kezelje. A felhasználók böngészhetik a Pokémonokat, megtekinthetik a tulajdonságaikat, illetve interakcióba léphetnek velük az alkalmazás funkcióinak segítségével.
-A projekt oktatási céllal készült, és bemutatja a frontend fejlesztés alapjait, valamint API használatát.</p>
-<p>Használt technológiák</p>
-<ul>
-<li>HTML5</li>
-<li>CSS3</li>
-<li>JavaScript (ES6)</li>
-<li>Fetch API / async-await</li>
-</ul></article>
-    </section>
-
-
 
 
 
