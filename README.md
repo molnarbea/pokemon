@@ -1,0 +1,1 @@
+Pokemon - dokumentáció készítésének automatizálása
